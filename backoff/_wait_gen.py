@@ -1,8 +1,11 @@
 # coding:utf-8
 
-import itertools
 import math
 from typing import Any, Callable, Generator, Iterable, Optional, Union
+from typing import Any
+import sys
+if sys.version_info < (3,12):
+    import itertools
 
 
 def expo(
@@ -93,10 +96,10 @@ def constant(
     # Advance past initial .send() call
     yield  # type: ignore[misc]
 
-    try:
-        itr = iter(interval)  # type: ignore
-    except TypeError:
+    if sys.version_info < (3,12):
         itr = itertools.repeat(interval)  # type: ignore
+    else:
+        itr = iter(interval)  # type: ignore
 
     for val in itr:
         yield val
