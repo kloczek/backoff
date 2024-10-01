@@ -1,19 +1,9 @@
-# coding:utf-8
 import logging
 import sys
 from typing import (Any, Callable, Coroutine, Dict, Generator, Sequence, Tuple,
                     TypeVar, Union)
 
-if sys.version_info >= (3, 8):  # pragma: no cover
-    from typing import TypedDict
-else:  # pragma: no cover
-    # use typing_extensions if installed but don't require it
-    try:
-        from typing_extensions import TypedDict
-    except ImportError:
-        class TypedDict(dict):
-            def __init_subclass__(cls, **kwargs: Any) -> None:
-                return super().__init_subclass__()
+from typing import TypedDict
 
 
 class _Details(TypedDict):
